@@ -9,8 +9,11 @@ pipeline {
 
         stage('Install') {
             steps {
-                sh 'rm -rf node_modules package-lock.json'
-                sh 'npm install'
+                sh '''
+                npm cache clean --force
+                rm -rf node_modules package-lock.json'
+                npm install --no-audit --no-fund
+                '''
             }
         }
 
